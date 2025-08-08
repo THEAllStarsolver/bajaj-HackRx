@@ -1,35 +1,41 @@
 {
-  "name": "bajaj-pulse",
+  "name": "llm-doc-processor",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
-  "scripts": {
-    "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
-  },
+  "private": true,
   "dependencies": {
-    "expo": "~49.0.0",
-    "react": "18.2.0",
-    "react-native": "0.72.6",
-    "@react-navigation/native": "^6.1.7",
-    "@react-navigation/stack": "^6.3.17",
-    "@react-navigation/bottom-tabs": "^6.5.8",
-    "@supabase/supabase-js": "^2.38.0",
-    "react-native-maps": "1.7.1",
-    "expo-location": "~16.1.0",
-    "expo-image-picker": "~14.3.2",
-    "expo-av": "~13.4.1",
-    "expo-notifications": "~0.20.1",
-    "lottie-react-native": "6.0.1",
-    "react-native-paper": "^5.10.6",
-    "@react-native-google-signin/google-signin": "^10.0.1",
-    "expo-auth-session": "~5.0.2",
-    "react-native-web": "~0.19.6",
-    "react-dom": "18.2.0",
-    "@expo/webpack-config": "^19.0.0"
+    "@heroicons/react": "^2.0.18",
+    "@headlessui/react": "^1.7.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.0",
+    "react-dropzone": "^14.2.3",
+    "axios": "^1.6.0",
+    "tailwindcss": "^3.3.0",
+    "lucide-react": "^0.263.1",
+    "react-scripts": "5.0.1"
   },
-  "devDependencies": {
-    "@babel/core": "^7.20.0"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

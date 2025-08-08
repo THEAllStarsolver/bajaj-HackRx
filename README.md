@@ -1,245 +1,159 @@
-# Bajaj Pulse - Digital Maintenance & Service Platform
+# LLM Document Processor
 
-A comprehensive mobile-first app for Bajaj two-wheeler maintenance, service tracking, and mechanic assistance built for the Bajaj HackRx Hackathon.
-
-## 🎯 Overview
-
-Bajaj Pulse empowers bike owners and mechanics to manage service, maintenance, health prediction, and geo-based mechanic discovery without requiring embedded hardware or OBD sensors.
+An interactive web application that processes documents using LLM technology and provides intelligent query responses with real UPI payment integration.
 
 ## 🚀 Features
 
-### For Vehicle Owners
-- **Health Monitoring**: AI-powered vehicle health scoring and predictive maintenance
-- **Service Tracking**: Complete service history with image uploads
-- **Mechanic Discovery**: Find verified mechanics nearby with ratings and reviews
-- **Smart Reminders**: KM-based and time-based service notifications
-- **Rewards System**: Earn points for timely maintenance and reviews
+### 📄 Document Upload
+- Upload PDFs, Word docs, or email extracts
+- Auto-converts documents to raw text (OCR support)
+- Preprocesses and chunks documents
+- Generates embeddings using OpenAI/Cohere
+- Stores in vector database (Pinecone/FAISS)
 
-### For Mechanics
-- **Job Management**: Log service jobs with voice notes and image analysis
-- **AI Diagnostics**: Image-based part detection and damage assessment
-- **Booking System**: Manage customer appointments and service history
-- **Profile Management**: Skills, certifications, and rating system
+### 🧠 Query Interface
+- Accept natural language queries like "46M, knee surgery in Pune, 3-month policy"
+- Uses GPT-4 to extract entities and perform semantic search
+- Returns structured decisions with justifications
+- Real UPI payment integration (₹20 per query)
 
-### For Administrators
-- **Analytics Dashboard**: User distribution, vehicle health reports
-- **Network Management**: Mechanic verification and performance tracking
-- **Feedback System**: Customer satisfaction and service quality monitoring
+### 📚 Clause Traceability
+- Shows step-by-step decision process
+- Entity extraction visualization
+- Semantic search results
+- Condition verification steps
+- Final decision reasoning
+
+### 🗂 History & Logs
+- View past queries and results
+- Download JSON responses
+- Filter by status and date
+- Audit trail for compliance
+
+### 🔐 Admin Dashboard
+- System health monitoring
+- Usage statistics
+- Error tracking
+- Performance metrics
+
+### 💳 Real UPI Payments
+- Integration with GPay, PhonePe, Paytm
+- UPI deep links for seamless payments
+- Payment verification system
+- Secure transaction handling
 
 ## 🛠 Tech Stack
 
-### Mobile App
-- **React Native** with Expo
-- **Supabase** for backend and authentication
-- **React Navigation** for routing
-- **React Native Paper** for UI components
-- **React Native Maps** for location services
-- **Expo Notifications** for push notifications
-
-### Backend Services
-- **Supabase Database** (PostgreSQL)
-- **Supabase Storage** for images
-- **Supabase Auth** with Google OAuth and Phone OTP
-- **AI Services** for image analysis and voice-to-text
-
-### Admin Dashboard
-- **React** with Tailwind CSS
-- **Recharts** for analytics visualization
-- **Heroicons** for UI icons
-
-## 📱 App Structure
-
-```
-src/
-├── screens/
-│   ├── OnboardingScreen.js      # Welcome slides
-│   ├── AuthScreen.js            # Login/Register
-│   ├── OwnerDashboardScreen.js  # Owner home
-│   ├── MechanicDashboardScreen.js # Mechanic home
-│   ├── MechanicFinderScreen.js  # Find mechanics
-│   ├── AddServiceRecordScreen.js # Service logging
-│   └── LogNewJobScreen.js       # Mechanic job entry
-├── services/
-│   ├── supabase.js             # Database client
-│   ├── aiService.js            # AI/ML functions
-│   └── notificationService.js   # Push notifications
-├── navigation/
-│   └── AppNavigator.js         # Route management
-└── utils/
-    └── theme.js                # UI theme
-```
-
-## 🗄 Database Schema
-
-### Users Table
-```sql
-- id (UUID, Primary Key)
-- email (VARCHAR, Unique)
-- phone (VARCHAR, Unique)
-- name (VARCHAR)
-- role (owner/mechanic)
-- created_at (TIMESTAMP)
-```
-
-### Vehicles Table
-```sql
-- id (UUID, Primary Key)
-- user_id (UUID, Foreign Key)
-- model (VARCHAR)
-- plate_number (VARCHAR)
-- current_km (INTEGER)
-- health_score (INTEGER)
-- last_service_km (INTEGER)
-```
-
-### Mechanics Table
-```sql
-- id (UUID, Primary Key)
-- user_id (UUID, Foreign Key)
-- skills (TEXT[])
-- experience (INTEGER)
-- rating (DECIMAL)
-- latitude/longitude (DECIMAL)
-- is_certified (BOOLEAN)
-```
-
-### Service Records Table
-```sql
-- id (UUID, Primary Key)
-- vehicle_id (UUID, Foreign Key)
-- mechanic_id (UUID, Foreign Key)
-- service_type (VARCHAR)
-- parts_changed (TEXT[])
-- images (TEXT[])
-- cost (DECIMAL)
-- service_date (DATE)
-```
-
-## 🤖 AI Features
-
-### Image Analysis
-- Part identification using computer vision
-- Damage assessment and severity scoring
-- Maintenance recommendations
-- Cost estimation
-
-### Predictive Maintenance
-- Health score calculation based on:
-  - KM since last service
-  - Service history patterns
-  - Part replacement frequency
-  - Usage patterns
-
-### Voice Processing
-- Speech-to-text for mechanic notes
-- Automatic transcription and summarization
-- Multi-language support
-
-## 🔔 Notification System
-
-- **Service Reminders**: Based on KM and time intervals
-- **Health Alerts**: When vehicle score drops below threshold
-- **Booking Confirmations**: Mechanic appointment confirmations
-- **Reward Notifications**: Points earned for activities
-
-## 🏆 Rewards System
-
-Users earn points for:
-- Timely service completion (50 points)
-- Adding service records (25 points)
-- Mechanic reviews (15 points)
-- Referrals (100 points)
-
-Points can be redeemed for:
-- Service discounts
-- Bajaj merchandise
-- Premium features
+- **Frontend**: React.js + Tailwind CSS
+- **Backend**: Node.js/FastAPI (planned)
+- **LLM**: GPT-4 via OpenAI API
+- **Embeddings**: OpenAI/Cohere
+- **Vector DB**: Pinecone/FAISS
+- **OCR**: Amazon Textract/Tesseract.js
+- **Storage**: AWS S3
+- **Database**: PostgreSQL/Supabase
+- **Payments**: UPI Deep Links + Razorpay (optional)
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 16+
-- Expo CLI
-- Supabase account
-- Google Maps API key
+- Node.js 16+ 
+- npm or yarn
 
 ### Installation
 
-1. **Clone the repository**
+1. Clone the repository:
 ```bash
 git clone <repository-url>
-cd BajajPulse
+cd llm-doc-processor
 ```
 
-2. **Install dependencies**
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. **Setup Supabase**
-- Create a new Supabase project
-- Run the SQL schema from `supabase-schema.sql`
-- Update `src/services/supabase.js` with your credentials
-
-4. **Configure environment**
-```bash
-# Create .env file
-SUPABASE_URL=your_supabase_url
-SUPABASE_ANON_KEY=your_supabase_anon_key
-GOOGLE_MAPS_API_KEY=your_google_maps_key
-```
-
-5. **Start the app**
+3. Start the development server:
 ```bash
 npm start
 ```
 
-### Admin Dashboard Setup
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1. **Navigate to admin dashboard**
-```bash
-cd admin-dashboard
-npm install
+## 📦 API Response Format
+
+All query responses follow this JSON structure:
+
+```json
+{
+  "decision": "approved",
+  "amount": "₹75,000",
+  "justification": "Clause 4.3: Surgery under orthopedic category is covered after 90 days of policy start",
+  "referenced_clauses": [
+    {
+      "clause_number": "4.3",
+      "clause_text": "Orthopedic surgeries are covered after 90 days."
+    }
+  ]
+}
 ```
 
-2. **Start the dashboard**
-```bash
-npm start
+## 🧪 Sample Usage
+
+**Query**: "46M, knee surgery in Pune, 3-month policy"
+
+**Expected Output**:
+- Decision: ✅ Approved
+- Amount: ₹75,000
+- Clause: 4.3
+- Justification: "Knee surgery is covered after 90 days, and the policy is 3 months old"
+
+## 💳 Payment Integration
+
+The app uses real UPI payments:
+- **UPI ID**: rik64712@oksbi
+- **Amount**: ₹20 per query
+- **Payment Flow**: Query → Payment → Results
+- **Supported Apps**: GPay, PhonePe, Paytm, etc.
+
+## 🔧 Configuration
+
+Create a `.env` file in the root directory:
+
+```env
+REACT_APP_OPENAI_API_KEY=your_openai_key
+REACT_APP_PINECONE_API_KEY=your_pinecone_key
+REACT_APP_UPI_ID=rik64712@oksbi
 ```
 
-## 📊 Key Metrics
+## 📱 Pages Overview
 
-- **User Engagement**: Service completion rate, app usage frequency
-- **Mechanic Network**: Coverage area, response time, ratings
-- **Vehicle Health**: Average health scores, maintenance compliance
-- **Business Impact**: Service bookings, revenue per user
+1. **Document Upload** - Upload and process documents
+2. **Query Interface** - Ask questions and get AI responses
+3. **Payment Gateway** - Real UPI payment processing
+4. **Clause Traceability** - Understand AI decision process
+5. **History** - View past queries and results
+6. **Admin Dashboard** - System monitoring and analytics
 
-## 🔒 Security Features
+## 🤝 Contributing
 
-- **Authentication**: Multi-factor with phone OTP and Google OAuth
-- **Data Privacy**: Encrypted storage, GDPR compliance
-- **API Security**: Row-level security in Supabase
-- **Image Security**: Secure upload and storage
-
-## 🌟 Future Enhancements
-
-- **IoT Integration**: OBD sensor connectivity
-- **AR Features**: Augmented reality for part identification
-- **Blockchain**: Service history immutability
-- **ML Improvements**: Advanced predictive algorithms
-- **Multi-language**: Regional language support
-
-## 📞 Support
-
-For technical support or questions:
-- Email: support@bajajpulse.com
-- Documentation: [Link to docs]
-- Issues: [GitHub Issues]
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
+## 🆘 Support
 
-Built with ❤️ for Bajaj HackRx Hackathon
+For support, email support@example.com or join our Slack channel.
+
+## 🙏 Acknowledgments
+
+- OpenAI for GPT-4 API
+- React team for the amazing framework
+- Tailwind CSS for styling
+- All contributors and testers
